@@ -20,6 +20,7 @@ const TodoList = ({ todo, setTodo, setEditTodo }) => {
   const handleDelete = ({ id }) => {
     setTodo(todo.filter((todo) => todo.id != id));
   };
+
   return (
     <div>
       {todo.map((task) => (
@@ -27,7 +28,7 @@ const TodoList = ({ todo, setTodo, setEditTodo }) => {
           <input
             className="list"
             type="text"
-            value={task.title}
+            value={task.body ? task.title + " " + task.body : task.title}
             className={`list ${task.completed ? "complete" : ""}`}
             onChange={(e) => e.preventDefault()}
           />

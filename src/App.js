@@ -7,6 +7,7 @@ import "./App.css";
 const App = () => {
   const initialState = JSON.parse(localStorage.getItem("todo")) || [];
   const [input, setInput] = useState("");
+  const [inputBody, setInputBody] = useState("");
   const [todo, setTodo] = useState(initialState);
   const [editTodo, setEditTodo] = useState(null);
 
@@ -24,6 +25,8 @@ const App = () => {
           <Form
             input={input}
             setInput={setInput}
+            inputBody={inputBody}
+            setInputBody={setInputBody}
             todo={todo}
             setTodo={setTodo}
             editTodo={editTodo}

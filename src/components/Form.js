@@ -1,14 +1,27 @@
 import React, { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-const Form = ({ input, setInput, todo, setTodo, editTodo, setEditTodo }) => {
+const Form = ({
+  input,
+  setInput,
+  todo,
+  setTodo,
+  editTodo,
+  setEditTodo,
+  setInputBody,
+  inputBody,
+}) => {
   const onInputChange = (e) => {
     setInput(e.target.value);
   };
 
-  const updateTodo = (title, id, completed) => {
+  const onInputBodyChange = (e) => {
+    setInputBody(e.target.value);
+  };
+
+  const updateTodo = (title, id, completed, body) => {
     const newTodo = todo.map((t) =>
-      t.id === id ? { title, id, completed } : t
+      t.id === id ? { title, id, completed, body } : t
     );
     setTodo(newTodo);
     setEditTodo("");
@@ -17,18 +30,24 @@ const Form = ({ input, setInput, todo, setTodo, editTodo, setEditTodo }) => {
   useEffect(() => {
     if (editTodo) {
       setInput(editTodo.title);
+      setInputBody(editTodo.body);
     } else {
       setInput("");
+      setInputBody("");
     }
-  }, [setInput, editTodo]);
+  }, [setInput, editTodo, setInputBody]);
 
   const onFormSubmit = (e) => {
     e.preventDefault();
     if (!editTodo) {
-      setTodo([...todo, { id: uuidv4(), title: input, completed: false }]);
+      setTodo([
+        ...todo,
+        { id: uuidv4(), title: input, completed: false, body: inputBody },
+      ]);
       setInput("");
+      setInputBody("");
     } else {
-      updateTodo(input, editTodo.id, editTodo.completed);
+      updateTodo(input, editTodo.id, editTodo.completed, inputBody);
     }
   };
 
@@ -37,9 +56,17 @@ const Form = ({ input, setInput, todo, setTodo, editTodo, setEditTodo }) => {
       <input
         className="task-input"
         type="text"
-        placeholder="Enter a Todo..."
+        placeholder="Enter a Todo Title..."
         value={input}
         onChange={onInputChange}
+        required
+      />
+      <input
+        className="task-input"
+        type="text"
+        placeholder="Description..."
+        value={inputBody}
+        onChange={onInputBodyChange}
         required
       />
       <button className="button-add" type="submit">
