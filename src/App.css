@@ -4,7 +4,7 @@
 }
 
 .container {
-  background: linear-gradient(to right bottom, #e1b382, #c89666);
+  background: linear-gradient(to right bottom, #b4d8c7, #84dbb7f7);
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -13,7 +13,7 @@
 }
 
 .app-wrapper {
-  background-color: #12343b;
+  background-color: #0b4c53;
   min-width: 450px;
   min-height: 650px;
   padding: 30px;
@@ -37,7 +37,7 @@
   font-size: 20px;
   color: #ccc;
   background-color: #000;
-  border: 1px solid #c89666;
+  border: 1px solid #aad8b6;
   border-radius: 10px;
 }
 
@@ -47,14 +47,14 @@
   font-size: 20px;
   border-radius: 10px;
   border: 0;
-  background-color: #f1af71;
+  background-color: #71f191;
   cursor: pointer;
 }
 
 .list-item {
   display: flex;
   margin: 20px 0;
-  border: 1px solid #ccc;
+  border: 1px solid #aad8b6;
   border-radius: 10px;
   padding: 10px;
   max-height: 30px;
@@ -92,7 +92,7 @@
 
 .list {
   width: 220px;
-  background-color: #12343b;
+  background-color: #0b4c53;
   border: none;
   color: #ccc;
   font-size: 20px;
