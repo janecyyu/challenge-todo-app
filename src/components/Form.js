@@ -62,7 +62,7 @@ const Form = ({
         required
       />
       <input
-        className="task-input"
+        className="task-input-body"
         type="text"
         placeholder="Description..."
         value={inputBody}
