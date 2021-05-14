@@ -30,7 +30,7 @@ const Form = ({
   useEffect(() => {
     if (editTodo) {
       setInput(editTodo.title);
-      setInputBody(editTodo.body);
+      setInputBody(editTodo.description);
     } else {
       setInput("");
       setInputBody("");

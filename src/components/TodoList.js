@@ -28,7 +28,11 @@ const TodoList = ({ todo, setTodo, setEditTodo }) => {
           <input
             className="list"
             type="text"
-            value={task.body ? task.title + " - " + task.body : task.title}
+            value={
+              task.description
+                ? task.title + " - " + task.description
+                : task.title
+            }
             className={`list ${task.completed ? "complete" : ""}`}
             onChange={(e) => e.preventDefault()}
           />
