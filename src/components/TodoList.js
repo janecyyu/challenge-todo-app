@@ -19,7 +19,6 @@ const TodoList = ({ todo, setTodo, setEditTodo }) => {
   };
 
   const handleDelete = ({ id }) => {
-    console.log(id);
     axios
       .delete(`https://jane-todo-list-api.herokuapp.com/${id}`)
       .then((res) => {

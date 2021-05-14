@@ -28,10 +28,23 @@ const Form = ({
     setAddTodo({ ...addTodo, description: e.target.value });
   };
 
-  const updateTodo = (title, id, completed, body) => {
+  const updateTodo = (title, id, completed, description) => {
     const newTodo = todo.map((t) =>
-      t.id === id ? { title, id, completed, body } : t
+      t.id === id ? { title, id, completed, description } : t
     );
+    console.log("new", newTodo);
+    axios
+      .put(`https://jane-todo-list-api.herokuapp.com/${id}`, {
+        title,
+        id,
+        completed,
+        description,
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+
     setTodo(newTodo);
     setEditTodo("");
   };
@@ -60,6 +73,7 @@ const Form = ({
         })
         .catch((err) => console.log(err));
     } else {
+      console.log("update", editTodo);
       updateTodo(input, editTodo.id, editTodo.completed, inputBody);
     }
   };
