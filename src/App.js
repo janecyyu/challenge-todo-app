@@ -21,12 +21,6 @@ const App = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  // const initialState = JSON.parse(localStorage.getItem("todo")) || [];
-
-  // useEffect(() => {
-  //   localStorage.setItem("todo", JSON.stringify(todo));
-  // }, [todo]);
-
   return (
     <div className="container">
       <div className="app-wrapper">

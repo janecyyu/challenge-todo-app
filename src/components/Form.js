@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 
 const Form = ({
   input,
@@ -11,12 +12,20 @@ const Form = ({
   setInputBody,
   inputBody,
 }) => {
+  const [addTodo, setAddTodo] = useState({
+    id: Date.now(),
+    title: "",
+    description: "",
+  });
+
   const onInputChange = (e) => {
     setInput(e.target.value);
+    setAddTodo({ ...addTodo, id: Date.now(), title: e.target.value });
   };
 
   const onInputBodyChange = (e) => {
     setInputBody(e.target.value);
+    setAddTodo({ ...addTodo, description: e.target.value });
   };
 
   const updateTodo = (title, id, completed, body) => {
@@ -39,13 +48,17 @@ const Form = ({
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    if (!editTodo) {
-      setTodo([
-        ...todo,
-        { id: uuidv4(), title: input, completed: false, body: inputBody },
-      ]);
-      setInput("");
-      setInputBody("");
+    console.log(addTodo);
+    if (!editTodo && addTodo.title.length > 0) {
+      axios
+        .post("https://jane-todo-list-api.herokuapp.com/", addTodo)
+        .then((res) => {
+          console.log(res);
+          setTodo([...todo, addTodo]);
+          setInput("");
+          setInputBody("");
+        })
+        .catch((err) => console.log(err));
     } else {
       updateTodo(input, editTodo.id, editTodo.completed, inputBody);
     }

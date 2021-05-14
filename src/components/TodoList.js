@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 const TodoList = ({ todo, setTodo, setEditTodo }) => {
   const handleComplete = (task) => {
@@ -18,7 +19,14 @@ const TodoList = ({ todo, setTodo, setEditTodo }) => {
   };
 
   const handleDelete = ({ id }) => {
-    setTodo(todo.filter((todo) => todo.id != id));
+    console.log(id);
+    axios
+      .delete(`https://jane-todo-list-api.herokuapp.com/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        setTodo(todo.filter((todo) => todo.id != id));
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
